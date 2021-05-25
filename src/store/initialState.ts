@@ -1,11 +1,10 @@
 import { IInitial } from "../components/interface";
-
-const cart = JSON.parse(localStorage.getItem('cart') || '[]').reduce((summ:number, item:any) => summ + item.count, 0)
+import { getCountCart } from '../components/functions/function'
 
 const initialState: IInitial = {
     items: [],
     isModal: false,
-    countCart: cart,
+    countCart: getCountCart(),
 };
   
 export default initialState;
