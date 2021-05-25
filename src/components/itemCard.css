@@ -1,13 +1,16 @@
-.card-wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.card-wrap-content {
     border-radius: 8px;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 16%);
     background-color: #fff;
     padding: 20px;
     height: 150px;
     margin-top: 20px;
+}
+
+.card-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .item-wrap {
@@ -40,6 +43,10 @@
     margin-left: 50px;
 }
 
+.item-title-category {
+    margin-top: 30px;
+}
+
 .item-title {
     font-size: 25px;
     font-weight: 700;
@@ -49,4 +56,9 @@
     width: 70%;
     overflow: hidden;
     font-size: 12px;
+}
+
+.detail {
+    display: flex;
+    justify-content: flex-end
 }
