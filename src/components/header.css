@@ -28,4 +28,9 @@
     margin-left: 20px;
 }
 
+.cart-count {
+    display: flex;
+    align-items: center;
+}
+
 
