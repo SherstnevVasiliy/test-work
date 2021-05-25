@@ -8,26 +8,50 @@ const ItemCard = ({ data }:ICard) => {
 
     const [buyCount, setBuyCount] = useState(0)
 
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]').filter((item:any) => item.id === data.id)
+    console.log(cart[0])
+    if (cart[0]) {
+        // setBuyCount(cart[0].count)
+        console.log(cart[0].count)
+    }
+    
+    
     const handleClick = (id:number) => {
         console.log('PRESSED', id)
     }
 
-    const minusClick = (id:number) => {
-        let count = 0
-        if ((buyCount) > 0) {
-            count = buyCount - 1
+    const minusClick = (id:number, title:string) => {
+        let newCart = JSON.parse(localStorage.getItem('cart') || '[]')
+        let count = cart[0]? cart[0].count : buyCount 
+        if ((count) > 0) {
+            count --
             setBuyCount(count)
+            if (newCart.filter((item:any) => item.id === data.id)[0] && count > 0) {
+                newCart.filter((item:any) => item.id === data.id)[0].count = count
+            } else if (newCart.filter((item:any) => item.id === data.id)[0] && count === 0) {
+                newCart = newCart.filter((item:any) => item.id !== data.id)
+            }
+            localStorage.setItem("cart", JSON.stringify(newCart))
         }
-        console.log('Total: ', count)
     }
 
-    const plusClick = (id:number) => {
-        let count = 0
-        if ((buyCount) < data.total) {
-            count = buyCount + 1
+    const plusClick = (id:number, title:string) => {
+        const newCart = JSON.parse(localStorage.getItem('cart') || '[]')
+        let count = cart[0]? cart[0].count : buyCount 
+        if ((count) < data.total) {
+            count ++
             setBuyCount(count)
+            if (newCart.filter((item:any) => item.id === data.id)[0]) {
+                newCart.filter((item:any) => item.id === data.id)[0].count = count
+            } else {
+                newCart.push({
+                    id,
+                    title,
+                    count
+                })
+            }
+            localStorage.setItem("cart", JSON.stringify(newCart))
         }
-        console.log('Total: ', count)
     }
 
     useEffect(() => {
@@ -52,7 +76,7 @@ const ItemCard = ({ data }:ICard) => {
                                 </div>
                             </div>
                             <div className="item-total">
-                                Количество на складе: {data.total}
+                                Доступно на складе: {cart[0]? (data.total - cart[0].count) : (data.total - buyCount)}
                             </div>
                         </div>
                     </div>
@@ -61,9 +85,9 @@ const ItemCard = ({ data }:ICard) => {
                             {data.price}$
                         </div>
                         <div className="item-price-button">
-                            <Button className="plus-minus-btn" title="◀" onPress={() => minusClick(data.id)}/>
-                            <p>{buyCount}</p>
-                            <Button className="plus-minus-btn" title="▶" onPress={() => plusClick(data.id)}/>
+                            <Button className="plus-minus-btn" title="◀" onPress={() => minusClick(data.id, data.title)}/>
+                            <p>{cart[0]? cart[0].count : buyCount}</p>
+                            <Button className="plus-minus-btn" title="▶" onPress={() => plusClick(data.id, data.title)}/>
                         </div>
                     </div>
                 </div>

@@ -72,7 +72,8 @@
     background-color: #f6f6f6;
     border-radius: 5px;
     font-weight: bolder;
-    margin: 0 10px 0 10px
+    margin: 0 10px 0 10px;
+    opacity: 70%;
 }
 
 .plus-minus-btn:active {
