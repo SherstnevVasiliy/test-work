@@ -1,0 +1,31 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 16%);
+    background-color: #fff;
+    padding: 20px;
+    height: 30px;
+    margin-top: 20px;
+}
+
+.cart-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.cart-title::after {
+    content: "";
+    height: 20px;
+    width: 20px;
+    background-image: url("https://i.ibb.co/vh9vJnd/cart.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 20px;
+}
+
+

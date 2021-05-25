@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { ICard } from './interface'
 import './itemCard.css'
 import Button from './ui/button'
 
 
 const ItemCard = ({ data }:ICard) => {
-
+    console.log('render')
     const [buyCount, setBuyCount] = useState(0)
-
     let cart = JSON.parse(localStorage.getItem('cart') || '[]').filter((item:any) => item.id === data.id)
-    console.log(cart[0])
-    if (cart[0]) {
-        // setBuyCount(cart[0].count)
-        console.log(cart[0].count)
-    }
-    
     
     const handleClick = (id:number) => {
         console.log('PRESSED', id)
@@ -53,10 +46,6 @@ const ItemCard = ({ data }:ICard) => {
             localStorage.setItem("cart", JSON.stringify(newCart))
         }
     }
-
-    useEffect(() => {
-
-    }, [buyCount])
 
     return (
         <div className="wrapper">
