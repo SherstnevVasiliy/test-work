@@ -17,3 +17,9 @@ export interface IButton {
     onPress: MouseEventHandler<HTMLButtonElement>,
     className: string
 }
+
+export interface IInitial {
+    items: [],
+    isModal: boolean,
+    countCart: number,
+}

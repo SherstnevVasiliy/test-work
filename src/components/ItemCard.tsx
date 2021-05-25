@@ -1,10 +1,13 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { ICard } from './interface'
 import './itemCard.css'
 import Button from './ui/button'
+import { setCountCart } from '../store/actions/action'
 
 
 const ItemCard = ({ data }:ICard) => {
+    const dispatch = useDispatch();
     console.log('render')
     const [buyCount, setBuyCount] = useState(0)
     let cart = JSON.parse(localStorage.getItem('cart') || '[]').filter((item:any) => item.id === data.id)
@@ -25,6 +28,7 @@ const ItemCard = ({ data }:ICard) => {
                 newCart = newCart.filter((item:any) => item.id !== data.id)
             }
             localStorage.setItem("cart", JSON.stringify(newCart))
+            dispatch(setCountCart(JSON.parse(localStorage.getItem('cart') || '[]').reduce((summ:number, item:any) => summ + item.count, 0)))
         }
     }
 
@@ -44,6 +48,7 @@ const ItemCard = ({ data }:ICard) => {
                 })
             }
             localStorage.setItem("cart", JSON.stringify(newCart))
+            dispatch(setCountCart(JSON.parse(localStorage.getItem('cart') || '[]').reduce((summ:number, item:any) => summ + item.count, 0)))
         }
     }
 

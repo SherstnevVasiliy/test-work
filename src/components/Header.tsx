@@ -1,26 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Button from './ui/button'
 import './header.css'
+import { useSelector } from 'react-redux'
+import { IInitial } from './interface'
 
 const Header = () => {
 
-    const [cartCount, setCartCount] = useState(0)
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]')
-    console.log(cart)
-    const cartValue = cart.reduce((summ:number, item:any) => summ + item.count, 0)
-
-    useEffect (() => {
-        setCartCount(cartValue)
-    }, [cartValue])
-
-
+    const countCart = useSelector((state: IInitial) => state.countCart)
+    console.log(countCart)
 
     return (
         <header>
             <div className="wrapper">
                 <div className="header">
-                    <p className="cart-title">Корзина</p>
-                    <div className="cart-count">{cartCount}</div>
+                    <Button className="cart-title" title="" onPress={() => console.log('PRESS CART')}/>
+                    {countCart? <div className="cart-count">{countCart}</div>
+                    :
+                    <div className="cart-count hide">{countCart}</div>}
                 </div>
             </div>
         </header>
