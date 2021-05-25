@@ -47,7 +47,7 @@
     margin-top: 30px;
 }
 
-.item-title {
+.item-title, .item-price {
     font-size: 25px;
     font-weight: 700;
 }
@@ -61,4 +61,32 @@
 .detail {
     display: flex;
     justify-content: flex-end
+}
+
+.plus-minus-btn, .plus-minus-btn:hover, .plus-minus-btn:focus, .plus-minus-btn:active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    font-weight: bolder;
+    margin: 0 10px 0 10px
+}
+
+.plus-minus-btn:active {
+    background-color: lightgray;
+}
+
+.item-price-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    align-items: center;
+}
+
+.item-price-button {
+    display: flex;
+    align-items: center;
 }

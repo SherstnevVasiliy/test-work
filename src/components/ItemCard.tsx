@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ICard } from './interface'
 import './itemCard.css'
 import Button from './ui/button'
@@ -6,9 +6,33 @@ import Button from './ui/button'
 
 const ItemCard = ({ data }:ICard) => {
 
+    const [buyCount, setBuyCount] = useState(0)
+
     const handleClick = (id:number) => {
         console.log('PRESSED', id)
     }
+
+    const minusClick = (id:number) => {
+        let count = 0
+        if ((buyCount) > 0) {
+            count = buyCount - 1
+            setBuyCount(count)
+        }
+        console.log('Total: ', count)
+    }
+
+    const plusClick = (id:number) => {
+        let count = 0
+        if ((buyCount) < data.total) {
+            count = buyCount + 1
+            setBuyCount(count)
+        }
+        console.log('Total: ', count)
+    }
+
+    useEffect(() => {
+
+    }, [buyCount])
 
     return (
         <div className="wrapper">
@@ -32,8 +56,15 @@ const ItemCard = ({ data }:ICard) => {
                             </div>
                         </div>
                     </div>
-                    <div className="item-price">
-                        {data.price}$
+                    <div className="item-price-wrap">
+                        <div className="item-price">
+                            {data.price}$
+                        </div>
+                        <div className="item-price-button">
+                            <Button className="plus-minus-btn" title="◀" onPress={() => minusClick(data.id)}/>
+                            <p>{buyCount}</p>
+                            <Button className="plus-minus-btn" title="▶" onPress={() => plusClick(data.id)}/>
+                        </div>
                     </div>
                 </div>
                 <div className="detail">
