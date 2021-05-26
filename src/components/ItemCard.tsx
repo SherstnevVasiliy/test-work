@@ -11,6 +11,7 @@ const ItemCard = ({ data }:ICard) => {
     const dispatch = useDispatch();
     console.log('render')
     const [buyCount, setBuyCount] = useState(0)
+    const [totalCost, setTotalCost] = useState(data.price * data.total)
     let cart = getCart().filter((item:any) => item.id === data.id)
     
     const handleClick = (id:number) => {
@@ -49,6 +50,7 @@ const ItemCard = ({ data }:ICard) => {
                         <div className="item-price-button">
                             <Button className="plus-minus-btn" title="◀" onPress={() => minusClick(
                                 setBuyCount,
+                                setTotalCost,
                                 dispatch,
                                 setCountCart,
                                 buyCount,
@@ -58,6 +60,7 @@ const ItemCard = ({ data }:ICard) => {
                             <p>{cart[0]? cart[0].count : buyCount}</p>
                             <Button className="plus-minus-btn" title="▶" onPress={() => plusClick(
                                 setBuyCount,
+                                setTotalCost,
                                 dispatch,
                                 setCountCart,
                                 buyCount,

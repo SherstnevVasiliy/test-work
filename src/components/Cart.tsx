@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import React from 'react'
+import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import axios from 'axios'
-import ItemCard from '../components/ItemCard'
-import { setItemsState } from '../store/actions/action'
 import Button from '../components/ui/button';
 import './cart.css'
-import { getCart } from './functions/function'
 import CartItem from './CartItem';
+import { IInitial } from './interface';
 
 const Cart = ({data}:any) => {
+    const totalCart = useSelector((state: IInitial) => state.totalCart)
     console.log('DATACART',data)
 
     const onClear = () => {
@@ -19,15 +17,18 @@ const Cart = ({data}:any) => {
     return (
         <>
         <div className="wrapper">
-            {data.map((item:any) => <CartItem data={item}/>)}
+            {data.map((item:any) => <CartItem data={item} key = {uuidv4()}/>)}
         </div>
         <div className="wrapper">
+            <div>{totalCart}</div>
             <div className="cart">
                 <Button className="btn-cart" title="Очистить корзину" onPress={onClear}/>
             </div>
         </div>
+        
         </>
     )
 }
 
 export default Cart
+
