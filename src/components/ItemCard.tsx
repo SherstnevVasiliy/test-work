@@ -4,53 +4,17 @@ import { ICard } from './interface'
 import './itemCard.css'
 import Button from './ui/button'
 import { setCountCart } from '../store/actions/action'
-import { getCountCart } from '../components/functions/function'
+import { getCart, minusClick, plusClick } from '../components/functions/function'
 
 
 const ItemCard = ({ data }:ICard) => {
     const dispatch = useDispatch();
     console.log('render')
     const [buyCount, setBuyCount] = useState(0)
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]').filter((item:any) => item.id === data.id)
+    let cart = getCart().filter((item:any) => item.id === data.id)
     
     const handleClick = (id:number) => {
         console.log('PRESSED', id)
-    }
-
-    const minusClick = (id:number, title:string) => {
-        let newCart = JSON.parse(localStorage.getItem('cart') || '[]')
-        let count = cart[0]? cart[0].count : buyCount 
-        if ((count) > 0) {
-            count --
-            setBuyCount(count)
-            if (newCart.filter((item:any) => item.id === data.id)[0] && count > 0) {
-                newCart.filter((item:any) => item.id === data.id)[0].count = count
-            } else if (newCart.filter((item:any) => item.id === data.id)[0] && count === 0) {
-                newCart = newCart.filter((item:any) => item.id !== data.id)
-            }
-            localStorage.setItem("cart", JSON.stringify(newCart))
-            dispatch(setCountCart(getCountCart()))
-        }
-    }
-
-    const plusClick = (id:number, title:string) => {
-        const newCart = JSON.parse(localStorage.getItem('cart') || '[]')
-        let count = cart[0]? cart[0].count : buyCount 
-        if ((count) < data.total) {
-            count ++
-            setBuyCount(count)
-            if (newCart.filter((item:any) => item.id === data.id)[0]) {
-                newCart.filter((item:any) => item.id === data.id)[0].count = count
-            } else {
-                newCart.push({
-                    id,
-                    title,
-                    count
-                })
-            }
-            localStorage.setItem("cart", JSON.stringify(newCart))
-            dispatch(setCountCart(getCountCart()))
-        }
     }
 
     return (
@@ -71,7 +35,10 @@ const ItemCard = ({ data }:ICard) => {
                                 </div>
                             </div>
                             <div className="item-total">
-                                Доступно на складе: {cart[0]? (data.total - cart[0].count) : (data.total - buyCount)}
+                                Доступно на складе: {cart[0]?
+                                ((data.total - cart[0].count) > 15? "Много" : (data.total - cart[0].count))
+                                :
+                                ((data.total - buyCount) > 15? "Много" : (data.total - buyCount))}
                             </div>
                         </div>
                     </div>
@@ -80,9 +47,23 @@ const ItemCard = ({ data }:ICard) => {
                             {data.price}$
                         </div>
                         <div className="item-price-button">
-                            <Button className="plus-minus-btn" title="◀" onPress={() => minusClick(data.id, data.title)}/>
+                            <Button className="plus-minus-btn" title="◀" onPress={() => minusClick(
+                                setBuyCount,
+                                dispatch,
+                                setCountCart,
+                                buyCount,
+                                cart,
+                                data
+                                )}/>
                             <p>{cart[0]? cart[0].count : buyCount}</p>
-                            <Button className="plus-minus-btn" title="▶" onPress={() => plusClick(data.id, data.title)}/>
+                            <Button className="plus-minus-btn" title="▶" onPress={() => plusClick(
+                                setBuyCount,
+                                dispatch,
+                                setCountCart,
+                                buyCount,
+                                cart,
+                                data
+                            )}/>
                         </div>
                     </div>
                 </div>

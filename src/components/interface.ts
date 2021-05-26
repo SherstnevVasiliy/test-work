@@ -12,6 +12,17 @@ export interface ICard {
     }
 }
 
+export interface ICart {
+            id: number;
+            title: string;
+            price: number;
+            description: string;
+            image: string;
+            category: string;
+            total: number;
+            count: number
+}
+
 export interface IButton {
     title: string,
     onPress: MouseEventHandler<HTMLButtonElement>,
