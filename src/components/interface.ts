@@ -33,5 +33,6 @@ export interface IInitial {
     items: [],
     isModal: boolean,
     countCart: number,
-    totalCart: number
+    totalCart: number,
+    isCartShow: boolean
 }

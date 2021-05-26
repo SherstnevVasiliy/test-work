@@ -12,10 +12,9 @@ button, button:focus {
   color: inherit;
   background-color: transparent;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-button:hover, button:focus, button:active {
-  transition: 0.3s;
+.price-text {
+  font-size: 20px;
+  font-weight: 700;
 }
-

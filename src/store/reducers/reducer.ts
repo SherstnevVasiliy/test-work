@@ -5,11 +5,11 @@ const reducer = (state: IInitial = initialState, action: { type: string; payload
 
     switch (action.type) {
     case 'SET_ITEMS':
-        console.log(action.payload)
         return { ...state, items: action.payload.items };
     case 'SET_CART':
-        console.log(action.payload)
-        return { ...state, countCart: action.payload.countCart };
+        return { ...state, countCart: action.payload.countCart, totalCart: action.payload.totalCart };
+    case 'CART_SHOW':
+        return { ...state, isCartShow: action.payload.isCartShow };
  
       default:
         return state;

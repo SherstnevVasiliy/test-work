@@ -9,8 +9,8 @@ import { getCart, minusClick, plusClick } from '../components/functions/function
 
 const ItemCard = ({ data }:ICard) => {
     const dispatch = useDispatch();
-    console.log('render')
     const [buyCount, setBuyCount] = useState(0)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [totalCost, setTotalCost] = useState(data.price * data.total)
     let cart = getCart().filter((item:any) => item.id === data.id)
     

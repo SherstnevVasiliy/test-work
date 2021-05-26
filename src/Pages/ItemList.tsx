@@ -14,7 +14,6 @@ const ItemList = () => {
           try {
             const response = await axios.get('http://localhost:3000/items');
             setItemList(response.data);
-            console.log(response.data);
             dispatch(setItemsState(response.data))            
           } catch (err) {
             alert(err);
@@ -25,7 +24,7 @@ const ItemList = () => {
 
     return (
         <div className="wrapper">
-            {itemList.map(items => <ItemCard data={items} key = {uuidv4()}/>)}
+            {itemList.filter((items:any) => items.total !== 0).map(items => <ItemCard data={items} key = {uuidv4()}/>)}
         </div>
     )
 }

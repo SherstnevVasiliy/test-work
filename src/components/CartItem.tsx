@@ -8,35 +8,28 @@ import { getCart, minusClick, plusClick } from '../components/functions/function
 
 
 const CartItem = ({ data }:any) => {
-    console.log('=======', data)
-    const [totalCost, setTotalCost] = useState(Math.floor(data.price * data.count * 100) / 100)
     const dispatch = useDispatch();
-    console.log('render')
+    const [totalCost, setTotalCost] = useState(Math.floor(data.price * data.count * 100) / 100)
     const [buyCount, setBuyCount] = useState(0)
-    let cart = getCart().filter((item:any) => item.id === data.id)
-
+    let cart = getCart().filter((item:ICart) => item.id === data.id)
     return (
         <div className="cart-item-wrap">
-            <div className="item-wrap">
-                <div className="cart-text">
-                    <div className="item-title-category">
-                        <div className="item-title">
-                            {data.title}
-                        </div>
-                    </div>
-                    <div className="item-total">
-                        Доступно на складе: {cart[0]?
-                        ((data.total - cart[0].count) > 15? "Много" : (data.total - cart[0].count))
-                        :
-                        ((data.total - buyCount) > 15? "Много" : (data.total - buyCount))}
-                    </div>
+            <div className="cart-text">
+                <div className="price-text">
+                    {data.title}
+                </div>
+                <div className="item-total">
+                    Доступно на складе: {cart[0]?
+                    ((data.total - cart[0].count) > 15? "Много" : (data.total - cart[0].count))
+                    :
+                    ((data.total - buyCount) > 15? "Много" : (data.total - buyCount))}
                 </div>
             </div>
             <div className="cart-price-wrap">
-                <div className="item-price">
+                <div className="price price-text">
                     {data.price}$
                 </div>
-                <div className="item-price-button">
+                <div className="cart-price-button">
                     <Button className="plus-minus-btn" title="◀" onPress={() => minusClick(
                         setBuyCount,
                         setTotalCost,
@@ -57,8 +50,8 @@ const CartItem = ({ data }:any) => {
                         data,
                     )}/>
                 </div>
-                <div className="item-price total">
-                    {totalCost}$
+                <div className="price price-text">
+                    {cart[0]? Math.floor(cart[0].price * cart[0].count * 100) / 100 : totalCost}$
                 </div>
             </div>
         </div>

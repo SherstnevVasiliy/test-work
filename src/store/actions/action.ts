@@ -5,10 +5,18 @@ export const setItemsState = (props: []) => ({
     },
 });
   
-export const setCountCart = (props:number) => ({
+export const setCountCart = (countCart:number, totalCart:number) => ({
     type: 'SET_CART',
     payload: {
-        countCart: props,
+        countCart,
+        totalCart
+    },
+});
+
+export const cartShow = (props: boolean) => ({
+    type: 'CART_SHOW',
+    payload: {
+        isCartShow: props
     },
 });
 
