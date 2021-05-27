@@ -9,6 +9,7 @@ export interface ICard {
             image: string;
             category: string;
             total: number;
+            count: number
     }
 }
 

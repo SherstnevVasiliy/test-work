@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { ICard } from './interface'
+import { ICard, ICart } from './interface'
 import './itemCard.css'
 import Button from './ui/button'
 import { setCountCart } from '../store/actions/action'
@@ -12,7 +12,7 @@ const ItemCard = ({ data }:ICard) => {
     const [buyCount, setBuyCount] = useState(0)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [totalCost, setTotalCost] = useState(data.price * data.total)
-    let cart = getCart().filter((item:any) => item.id === data.id)
+    let cart = getCart().filter((item:ICart) => item.id === data.id)
     
     const handleClick = (id:number) => {
         console.log('PRESSED', id)

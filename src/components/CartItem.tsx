@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { ICart } from './interface'
+import { ICard, ICart } from './interface'
 import './itemCard.css'
 import Button from './ui/button'
 import { setCountCart } from '../store/actions/action'
 import { getCart, minusClick, plusClick } from '../components/functions/function'
 
 
-const CartItem = ({ data }:any) => {
+const CartItem = ({ data }:ICard) => {
     const dispatch = useDispatch();
     const [totalCost, setTotalCost] = useState(Math.floor(data.price * data.count * 100) / 100)
     const [buyCount, setBuyCount] = useState(0)

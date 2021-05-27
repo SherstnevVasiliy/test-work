@@ -13,10 +13,10 @@ const OrdersAll = ({ data }:any) => {
                 <div className="price-text">
                     Дата заказа: {data.orderData.toString().slice(0,10)}
                 </div>
-                <div className="price-text">
+                <div className="price-text order-content">
                     {data.order.map((orderItem: any) => <OrderItem data={orderItem} key = {uuidv4()}/>)}
                 </div>
-                <div className="price-text">
+                <div className="price-text order-total">
                     Total: {Math.floor(data.order.reduce((summ:number, orderItem: any) => summ + orderItem.count*orderItem.price, 0) * 100) / 100}$
                 </div>
             </div>

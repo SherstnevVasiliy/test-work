@@ -1,7 +1,7 @@
 import { IInitial } from '../../components/interface';
 import initialState from '../initialState';
 
-const reducer = (state: IInitial = initialState, action: { type: string; payload: any }) => {
+const reducer = (state: IInitial = initialState, action: { type: string; payload: IInitial }) => {
 
     switch (action.type) {
     case 'SET_ITEMS':

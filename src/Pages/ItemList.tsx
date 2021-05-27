@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 import ItemCard from '../components/ItemCard'
 import { setItemsState } from '../store/actions/action'
+import { ICart } from '../components/interface';
 
 const ItemList = () => {
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const ItemList = () => {
 
     return (
         <div className="wrapper">
-            {itemList.filter((items:any) => items.total !== 0).map(items => <ItemCard data={items} key = {uuidv4()}/>)}
+            {itemList.filter((items:ICart) => items.total !== 0).map(items => <ItemCard data={items} key = {uuidv4()}/>)}
         </div>
     )
 }

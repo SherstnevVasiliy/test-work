@@ -44,7 +44,7 @@ export const plusClick = (
     setTotalCost: (arg0: number) => void,
     dispatch: (arg0: () => void) => void,
     setCountCart: (arg0: number, arg1: number) => any,
-    buyCount: any,
+    buyCount: number,
     cart: { count: number }[],
     data: { total: number, id: number, price: number }
     ) => {
