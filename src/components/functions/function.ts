@@ -1,4 +1,6 @@
-import { ICart } from "../interface"
+import axios from "axios"
+import { ICard, ICart } from "../interface"
+import ItemCard from "../ItemCard"
 
 export const getCart = () => {
     return JSON.parse(localStorage.getItem('cart') || '[]')
@@ -61,5 +63,45 @@ export const plusClick = (
         }
         localStorage.setItem("cart", JSON.stringify(newCart))
         dispatch(setCountCart(getCountCart(), getCountTotal()))
+    }
+}
+
+export const getOrders = async () => {
+    try {
+        const response = await axios.get('http://localhost:3000/orders');
+        console.log('RESPONSE',response.data)
+        console.log('GETCART',getCart())
+        return response.data
+      } catch (err) {
+        alert(err);
+    }
+}
+
+export const setOrder = async (data:any) => {
+    let order = []
+    for (let i = 0; i < data.length; i++) {
+        const newObj = {
+            id: data[i].id,
+            title: data[i].title,
+            count: data[i].count
+        }
+        order.push(newObj)
+    }
+
+    try {
+        await fetch(`http://localhost:3000/orders`, {
+            method: 'POST',
+            body:JSON.stringify(
+                {
+                    orderData: new Date(),
+                    order
+
+                }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+    } catch (e) {
+        console.log(e)
     }
 }

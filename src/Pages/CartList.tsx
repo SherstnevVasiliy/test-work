@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Button from '../components/ui/button';
 import './cart.css'
 import CartItem from '../components/CartItem';
-import { getCart, getCountCart, getCountTotal } from '../components/functions/function';
+import { getCart, getCountCart, getCountTotal, setOrder } from '../components/functions/function';
 import { IInitial } from '../components/interface';
 import { setCountCart } from '../store/actions/action';
 
@@ -45,11 +45,22 @@ const CartList = () => {
 
     const onUpdate = async () => {
         try {
-            getCart().map((newItems:{id:number, title:string, price:number, description:string, image:string, category:string, total:number, count:number}) => updateDb(newItems))
+            getCart().map((
+                newItems:{
+                    id:number,
+                    title:string,
+                    price:number,
+                    description:string,
+                    image:string,
+                    category:string,
+                    total:number, count:number
+                }) => updateDb(newItems))
+            console.log('KORZINA', getCart())    
+            setOrder(getCart())
+            onClear()
         } catch (e) {
             console.log(e)
         }
-        onClear()
     }
     
     return (

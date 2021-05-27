@@ -6,7 +6,7 @@ const initialState: IInitial = {
     isModal: false,
     countCart: getCountCart(),
     totalCart: getCountTotal()? getCountTotal() : 0,
-    isCartShow: false
+    isCartShow: false,
 };
   
 export default initialState;
