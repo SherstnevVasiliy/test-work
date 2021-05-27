@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Button from './ui/button'
 import './header.css'
 import { IInitial } from './interface'
-import { cartShow } from '../store/actions/action'
+import { cartShow, ordersShow } from '../store/actions/action'
 
 const FixedCart = () => {
     const dispatch = useDispatch()
@@ -12,6 +12,7 @@ const FixedCart = () => {
 
     const handlerShowCart = () => {
         dispatch(cartShow(true))
+        dispatch(ordersShow(false))
     }
 
     return (

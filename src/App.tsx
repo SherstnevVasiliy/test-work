@@ -19,7 +19,7 @@ function App() {
           {isCartShow === false && isOrdersShow === false ? <ItemList /> : null}
           {isCartShow === true && isOrdersShow === false ? <CartList /> : null}
           {isCartShow === false && isOrdersShow === true ? <OrderList /> : null}
-          {!isCartShow? <FixedCart /> : null}
+          {isCartShow === false && isOrdersShow === false? <FixedCart /> : null}
           {/* <OrderList /> */}
       </div>
     </div>

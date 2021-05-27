@@ -6,11 +6,16 @@ import { IInitial } from './interface'
 import { cartShow, ordersShow } from '../store/actions/action'
 
 const Header = () => {
+    const countCart = useSelector((state: IInitial) => state.countCart)
     const isCartShow = useSelector((state: IInitial) => state.isCartShow)
+    const isOrdersShow = useSelector((state: IInitial) => state.isOrdersShow)
+
+
     const dispatch = useDispatch()
 
     const handlerShowCart = () => {
         dispatch(cartShow(true))
+        dispatch(ordersShow(false))
     }
 
     const handlerShowItemList = () => {
@@ -18,11 +23,26 @@ const Header = () => {
         dispatch(ordersShow(false))
     }
 
-    const countCart = useSelector((state: IInitial) => state.countCart)
+    const handlerShowOrdersList = () => {
+        dispatch(cartShow(false))
+        dispatch(ordersShow(true))
+    }
 
-    const blockCart = () => {
+    
+
+    const inCart = () => {
         return (
             <>
+                <Button className="btn-return" title="История заказов" onPress={handlerShowOrdersList}/>
+                <Button className="btn-return" title="Вернуться в каталог" onPress={handlerShowItemList}/>
+            </>
+        )
+    }
+
+    const inCatalog = () => {
+        return (
+            <>
+                <Button className="btn-return" title="История заказов" onPress={handlerShowOrdersList}/>
                 <Button className="cart-title" title="" onPress={handlerShowCart}/>
                 {countCart? <div className="cart-count">{countCart}</div>
                 :
@@ -31,9 +51,15 @@ const Header = () => {
         )
     }
 
-    const blockReturn = () => {
+    const inOrders = () => {
         return (
-            <Button className="btn-return" title="Вернуться в каталог" onPress={handlerShowItemList}/>
+            <>
+                <Button className="btn-return" title="Вернуться в каталог" onPress={handlerShowItemList}/>
+                <Button className="cart-title" title="" onPress={handlerShowCart}/>
+                {countCart? <div className="cart-count">{countCart}</div>
+                :
+                <div className="cart-count hide">{countCart}</div>}
+            </>
         )
     }
 
@@ -41,7 +67,9 @@ const Header = () => {
         <header>
             <div className="wrapper">
                 <div className="header">
-                    {!isCartShow? blockCart() : blockReturn()}
+                    {isCartShow === false && isOrdersShow === false ? inCatalog() : null}
+                    {isCartShow === true && isOrdersShow === false ? inCart() : null}
+                    {isCartShow === false && isOrdersShow === true ? inOrders() : null}
                 </div>
             </div>
         </header>
