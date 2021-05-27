@@ -7,6 +7,7 @@ const initialState: IInitial = {
     countCart: getCountCart(),
     totalCart: getCountTotal()? getCountTotal() : 0,
     isCartShow: false,
+    isOrdersShow: false,
 };
   
 export default initialState;

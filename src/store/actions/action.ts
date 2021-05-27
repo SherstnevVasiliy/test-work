@@ -20,4 +20,11 @@ export const cartShow = (props: boolean) => ({
     },
 });
 
+export const ordersShow = (props: boolean) => ({
+    type: 'ORDERS_SHOW',
+    payload: {
+        isOrdersShow: props
+    },
+});
+
   

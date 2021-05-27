@@ -35,4 +35,5 @@ export interface IInitial {
     countCart: number,
     totalCart: number,
     isCartShow: boolean,
+    isOrdersShow: boolean
 }

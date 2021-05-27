@@ -3,7 +3,7 @@ import Button from './ui/button'
 import './header.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { IInitial } from './interface'
-import { cartShow } from '../store/actions/action'
+import { cartShow, ordersShow } from '../store/actions/action'
 
 const Header = () => {
     const isCartShow = useSelector((state: IInitial) => state.isCartShow)
@@ -15,6 +15,7 @@ const Header = () => {
 
     const handlerShowItemList = () => {
         dispatch(cartShow(false))
+        dispatch(ordersShow(false))
     }
 
     const countCart = useSelector((state: IInitial) => state.countCart)

@@ -6,7 +6,7 @@ import './cart.css'
 import CartItem from '../components/CartItem';
 import { getCart, getCountCart, getCountTotal, setOrder } from '../components/functions/function';
 import { IInitial } from '../components/interface';
-import { setCountCart } from '../store/actions/action';
+import { cartShow, ordersShow, setCountCart } from '../store/actions/action';
 
 const CartList = () => {
     const dispatch = useDispatch()
@@ -55,9 +55,11 @@ const CartList = () => {
                     category:string,
                     total:number, count:number
                 }) => updateDb(newItems))
-            console.log('KORZINA', getCart())    
             setOrder(getCart())
             onClear()
+            alert("Заказ успешно оформлен")
+            dispatch(ordersShow(true))
+            dispatch(cartShow(false))
         } catch (e) {
             console.log(e)
         }

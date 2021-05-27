@@ -1,17 +1,17 @@
 import axios from "axios"
-import { ICard, ICart } from "../interface"
-import ItemCard from "../ItemCard"
+import { ICart } from "../interface"
+
 
 export const getCart = () => {
     return JSON.parse(localStorage.getItem('cart') || '[]')
 }
 
 export const getCountCart = () => {
-    return getCart().reduce((summ:number, item:any) => summ + item.count, 0)
+    return getCart().reduce((summ:number, item:ICart) => summ + item.count, 0)
 }
 
 export const getCountTotal = () => {
-    return Math.floor(getCart().reduce((summ:number, item:any) => summ + item.count * item.price, 0) * 100) / 100
+    return Math.floor(getCart().reduce((summ:number, item:ICart) => summ + item.count * item.price, 0) * 100) / 100
 }
 
 export const minusClick = (
@@ -69,8 +69,6 @@ export const plusClick = (
 export const getOrders = async () => {
     try {
         const response = await axios.get('http://localhost:3000/orders');
-        console.log('RESPONSE',response.data)
-        console.log('GETCART',getCart())
         return response.data
       } catch (err) {
         alert(err);
@@ -83,7 +81,8 @@ export const setOrder = async (data:any) => {
         const newObj = {
             id: data[i].id,
             title: data[i].title,
-            count: data[i].count
+            count: data[i].count,
+            price: data[i].price
         }
         order.push(newObj)
     }

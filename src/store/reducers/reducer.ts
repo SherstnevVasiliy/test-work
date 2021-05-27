@@ -10,6 +10,8 @@ const reducer = (state: IInitial = initialState, action: { type: string; payload
         return { ...state, countCart: action.payload.countCart, totalCart: action.payload.totalCart };
     case 'CART_SHOW':
         return { ...state, isCartShow: action.payload.isCartShow };
+    case 'ORDERS_SHOW':
+        return { ...state, isOrdersShow: action.payload.isOrdersShow };
  
       default:
         return state;
