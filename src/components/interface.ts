@@ -33,8 +33,24 @@ export interface IButton {
 export interface IInitial {
     items: [],
     isModal: boolean,
+    dataModal: ICart,
     countCart: number,
     totalCart: number,
     isCartShow: boolean,
     isOrdersShow: boolean
+}
+
+export interface IOrders {
+    data: {
+        id: number;
+        order: IOrder[];
+        orderData: string;
+    }
+}
+
+export interface IOrder {
+    id: number;
+    title: string;
+    price: number;
+    count: number
 }

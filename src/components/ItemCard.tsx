@@ -3,9 +3,8 @@ import { useDispatch } from 'react-redux';
 import { ICard, ICart } from './interface'
 import './itemCard.css'
 import Button from './ui/button'
-import { setCountCart } from '../store/actions/action'
+import { openModal, setCountCart } from '../store/actions/action'
 import { getCart, minusClick, plusClick } from '../components/functions/function'
-
 
 const ItemCard = ({ data }:ICard) => {
     const dispatch = useDispatch();
@@ -13,9 +12,9 @@ const ItemCard = ({ data }:ICard) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [totalCost, setTotalCost] = useState(data.price * data.total)
     let cart = getCart().filter((item:ICart) => item.id === data.id)
-    
-    const handleClick = (id:number) => {
-        console.log('PRESSED', id)
+
+    const openModalHandler = () => {
+        dispatch(openModal(true, cart[0]? cart[0] : data))
     }
 
     return (
@@ -71,7 +70,7 @@ const ItemCard = ({ data }:ICard) => {
                     </div>
                 </div>
                 <div className="detail">
-                    <Button className="detail-btn" title="Подробнее..." onPress={() => handleClick(data.id)}/>
+                    <Button className="detail-btn" title="Подробнее..." onPress={openModalHandler}/>
                 </div>
             </div>
 

@@ -5,6 +5,7 @@ import axios from 'axios'
 import ItemCard from '../components/ItemCard'
 import { setItemsState } from '../store/actions/action'
 import { ICart } from '../components/interface';
+import Modal from '../components/Modal';
 
 const ItemList = () => {
     const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const ItemList = () => {
     return (
         <div className="wrapper">
             {itemList.filter((items:ICart) => items.total !== 0).map(items => <ItemCard data={items} key = {uuidv4()}/>)}
+            <Modal />
         </div>
     )
 }

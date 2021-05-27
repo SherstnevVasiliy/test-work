@@ -1,3 +1,5 @@
+import { ICart } from "../../components/interface";
+
 export const setItemsState = (props: []) => ({
     type: 'SET_ITEMS',
     payload: {
@@ -24,6 +26,14 @@ export const ordersShow = (props: boolean) => ({
     type: 'ORDERS_SHOW',
     payload: {
         isOrdersShow: props
+    },
+});
+
+export const openModal = (isModal: boolean, dataModal:ICart) => ({
+    type: 'MODAL_SHOW',
+    payload: {
+        isModal,
+        dataModal
     },
 });
 

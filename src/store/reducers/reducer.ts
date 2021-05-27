@@ -12,6 +12,8 @@ const reducer = (state: IInitial = initialState, action: { type: string; payload
         return { ...state, isCartShow: action.payload.isCartShow };
     case 'ORDERS_SHOW':
         return { ...state, isOrdersShow: action.payload.isOrdersShow };
+    case 'MODAL_SHOW':
+        return { ...state, isModal: action.payload.isModal, dataModal: action.payload.dataModal };
  
       default:
         return state;

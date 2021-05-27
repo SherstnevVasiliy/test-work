@@ -1,8 +1,7 @@
 import React from 'react'
-import { ICard } from './interface'
 
-const OrderItem = ({ data }:ICard) => {
-
+const OrderItem = (props:any) => {
+    const { data } = props
     return (
         <div className="order-item-wrap">
             <div className="order-text">

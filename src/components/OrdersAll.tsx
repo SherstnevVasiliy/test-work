@@ -1,9 +1,11 @@
 import React from 'react'
 import OrderItem from './OrderItem'
 import { v4 as uuidv4 } from 'uuid';
+import { IOrder, IOrders } from './interface';
 
-const OrdersAll = ({ data }:any) => {
-
+const OrdersAll = ( props:IOrders) => {
+    const { data } = props
+    
     return (
         <div className="order-wrap">
             <div className="text">
@@ -14,10 +16,10 @@ const OrdersAll = ({ data }:any) => {
                     Дата заказа: {data.orderData.toString().slice(0,10)}
                 </div>
                 <div className="price-text order-content">
-                    {data.order.map((orderItem: any) => <OrderItem data={orderItem} key = {uuidv4()}/>)}
+                    {data.order.map((orderItem: IOrder) => <OrderItem data={orderItem} key = {uuidv4()}/>)}
                 </div>
                 <div className="price-text order-total">
-                    Total: {Math.floor(data.order.reduce((summ:number, orderItem: any) => summ + orderItem.count*orderItem.price, 0) * 100) / 100}$
+                    Total: {Math.floor(data.order.reduce((summ:number, orderItem: IOrder) => summ + orderItem.count*orderItem.price, 0) * 100) / 100}$
                 </div>
             </div>
         </div>

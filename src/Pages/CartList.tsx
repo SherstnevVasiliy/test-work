@@ -5,7 +5,7 @@ import Button from '../components/ui/button';
 import './cart.css'
 import CartItem from '../components/CartItem';
 import { getCart, getCountCart, getCountTotal, setOrder } from '../components/functions/function';
-import { IInitial } from '../components/interface';
+import { ICart, IInitial } from '../components/interface';
 import { cartShow, ordersShow, setCountCart } from '../store/actions/action';
 
 const CartList = () => {
@@ -65,16 +65,30 @@ const CartList = () => {
         }
     }
     
-    return (
-        <div className="wrapper">
+    const cartButtons = () => {
+        return (
             <div className="cart-wrap">
-                {cartItems.map((item:any) => <CartItem data={item} key = {uuidv4()}/>)}
+                {cartItems.map((item:ICart) => <CartItem data={item} key = {uuidv4()}/>)}
                 <div className="total-amount price-text">Total amount: {totalCart}$</div>
                 <div className="cart-button">
                     <Button className="btn-cart" title="Очистить корзину" onPress={onClear}/>
                     <Button className="btn-cart" title="Оформить заказ" onPress={onUpdate}/>
                 </div>
             </div>
+        )
+    }
+
+    const nullCart = () => {
+        return (
+            <div className="cart-wrap null-cart-wrap">
+                <div className="price-text">КОРЗИНА ПУСТАЯ</div>
+            </div>
+        )
+    }
+
+    return (
+        <div className="wrapper">
+            {cartItems.length? cartButtons() : nullCart()}
         </div>
     )
 }

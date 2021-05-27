@@ -70,3 +70,8 @@
     display: flex;
     justify-content: flex-start;
 }
+
+.null-cart-wrap {
+    display: flex;
+    justify-content: center;
+}

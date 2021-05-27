@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import './cart.css'
 import './orders.css'
@@ -7,7 +6,6 @@ import axios from 'axios';
 import OrdersAll from '../components/OrdersAll';
 
 const OrderList = () => {
-    const dispatch = useDispatch();
     const [orderList, setOrderList] = useState([])
 
     useEffect(() => {
@@ -20,7 +18,7 @@ const OrderList = () => {
           }
         };
         getOrder();
-      }, [dispatch]);
+      }, []);
 
 
     
