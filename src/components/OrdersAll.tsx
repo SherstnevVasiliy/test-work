@@ -15,6 +15,12 @@ const OrdersAll = ( props:IOrders) => {
                 <div className="price-text">
                     Дата заказа: {data.orderData.toString().slice(0,10)}
                 </div>
+                <div className="price-text">
+                    Email: {data.email}
+                </div>
+                <div className="price-text">
+                    Телефон: {data.phone}
+                </div>
                 <div className="price-text order-content">
                     {data.order.map((orderItem: IOrder) => <OrderItem data={orderItem} key = {uuidv4()}/>)}
                 </div>

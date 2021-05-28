@@ -45,6 +45,8 @@ export interface IOrders {
         id: number;
         order: IOrder[];
         orderData: string;
+        email: string,
+        phone: string
     }
 }
 

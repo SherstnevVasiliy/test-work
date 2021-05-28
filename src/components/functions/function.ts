@@ -75,14 +75,14 @@ export const getOrders = async () => {
     }
 }
 
-export const setOrder = async (data:any) => {
+export const setOrder = async (data:any, email:string, phone:string) => {
     let order = []
     for (let i = 0; i < data.length; i++) {
         const newObj = {
             id: data[i].id,
             title: data[i].title,
             count: data[i].count,
-            price: data[i].price
+            price: data[i].price,
         }
         order.push(newObj)
     }
@@ -93,8 +93,9 @@ export const setOrder = async (data:any) => {
             body:JSON.stringify(
                 {
                     orderData: new Date(),
-                    order
-
+                    order,
+                    email,
+                    phone
                 }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -104,3 +105,12 @@ export const setOrder = async (data:any) => {
         console.log(e)
     }
 }
+
+export const isEmail = (value:string) => {
+    return /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/.test(value)
+}
+
+export const isPhone = (value:string) => {
+    return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){6,14}(\s*)?$/.test(value);
+}
+

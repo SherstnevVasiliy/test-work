@@ -4,13 +4,16 @@ import { v4 as uuidv4 } from 'uuid';
 import Button from '../components/ui/button';
 import './cart.css'
 import CartItem from '../components/CartItem';
-import { getCart, getCountCart, getCountTotal, setOrder } from '../components/functions/function';
+import { getCart, getCountCart, getCountTotal, isEmail, isPhone, setOrder } from '../components/functions/function';
 import { ICart, IInitial } from '../components/interface';
 import { cartShow, ordersShow, setCountCart } from '../store/actions/action';
+import Input from '../components/ui/input';
 
 const CartList = () => {
     const dispatch = useDispatch()
     const [cartItems, setCarItems] = useState(getCart())
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
     const totalCart = useSelector((state: IInitial) => state.totalCart)
 
     const onClear = () => {
@@ -44,6 +47,18 @@ const CartList = () => {
     }
 
     const onUpdate = async () => {
+        if (email === '' || phone === '') {
+            return alert('Поля Email и Телефон не должны быть пустыми')
+        }
+
+        if (!isEmail(email)) {
+            return alert('Введите корректный Email')
+        }
+        
+        if (!isPhone(phone.toString())) {
+            return alert('Введите корректный Телефон')
+        }
+
         try {
             getCart().map((
                 newItems:{
@@ -55,7 +70,7 @@ const CartList = () => {
                     category:string,
                     total:number, count:number
                 }) => updateDb(newItems))
-            setOrder(getCart())
+            setOrder(getCart(), email, phone.toString())
             onClear()
             alert("Заказ успешно оформлен")
             dispatch(ordersShow(true))
@@ -71,8 +86,26 @@ const CartList = () => {
                 {cartItems.map((item:ICart) => <CartItem data={item} key = {uuidv4()}/>)}
                 <div className="total-amount price-text">Total amount: {totalCart}$</div>
                 <div className="cart-button">
-                    <Button className="btn-cart" title="Очистить корзину" onPress={onClear}/>
+                <div className="registr-user-name">
+                    <Input
+                        value = {email}
+                        setValue = {setEmail}
+                        type = 'email'
+                        className="input"
+                        placeholder="Email..."
+                    />
+                </div>
+                <div className="registr-pass">
+                    <Input 
+                        value = {phone}
+                        setValue = {setPhone}
+                        type = 'text'
+                        className="input" 
+                        placeholder="Телефон..."
+                />
+                </div>
                     <Button className="btn-cart" title="Оформить заказ" onPress={onUpdate}/>
+                    <Button className="btn-cart" title="Очистить корзину" onPress={onClear}/>
                 </div>
             </div>
         )
