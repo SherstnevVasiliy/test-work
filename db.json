@@ -7,7 +7,7 @@
       "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
       "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
       "category": "men's clothing",
-      "total": 15
+      "total": 12
     },
     {
       "id": 2,
@@ -25,7 +25,7 @@
       "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
       "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
       "category": "men's clothing",
-      "total": 5
+      "total": 4
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
       "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
       "category": "men's clothing",
-      "total": 10
+      "total": 9
     },
     {
       "id": 5,
@@ -181,5 +181,46 @@
       "total": 7
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "orderData": "2021-05-28T15:53:09.704Z",
+      "order": [
+        {
+          "id": 1,
+          "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+          "count": 1,
+          "price": 109
+        },
+        {
+          "id": 3,
+          "title": "Mens Cotton Jacket",
+          "count": 1,
+          "price": 55
+        },
+        {
+          "id": 4,
+          "title": "Mens Casual Slim Fit",
+          "count": 1,
+          "price": 15
+        }
+      ],
+      "email": "root@kola-nn.com",
+      "phone": "+79038477401",
+      "id": 1
+    },
+    {
+      "orderData": "2021-05-28T16:01:03.952Z",
+      "order": [
+        {
+          "id": 1,
+          "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+          "count": 2,
+          "price": 109
+        }
+      ],
+      "email": "test@test.com",
+      "phone": "8(831) 434-10-15",
+      "id": 2
+    }
+  ]
 }
