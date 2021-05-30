@@ -44,7 +44,7 @@ const Header = () => {
             <>
                 <Button className="btn-return" title="История заказов" onPress={handlerShowOrdersList}/>
                 <Button className="cart-title" title="" onPress={handlerShowCart}/>
-                {countCart? <div className="cart-count">{countCart}</div>
+                {countCart? <div className="cart-count" onClick={handlerShowCart}>{countCart}</div>
                 :
                 <div className="cart-count hide">{countCart}</div>}
             </>
@@ -56,7 +56,7 @@ const Header = () => {
             <>
                 <Button className="btn-return" title="Вернуться в каталог" onPress={handlerShowItemList}/>
                 <Button className="cart-title" title="" onPress={handlerShowCart}/>
-                {countCart? <div className="cart-count">{countCart}</div>
+                {countCart? <div className="cart-count" onClick={handlerShowCart}>{countCart}</div>
                 :
                 <div className="cart-count hide">{countCart}</div>}
             </>

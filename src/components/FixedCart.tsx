@@ -18,7 +18,7 @@ const FixedCart = () => {
     return (
         <div className="fixed-cart">
             <Button className="cart-title" title="" onPress={handlerShowCart}/>
-            {countCart? <div className="cart-count">{countCart}</div>
+            {countCart? <div className="cart-count" onClick={handlerShowCart}>{countCart}</div>
             :
             <div className="cart-count hide">{countCart}</div>}
         </div>
